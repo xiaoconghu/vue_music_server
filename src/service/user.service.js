@@ -26,7 +26,6 @@ class UserService {
                 reject(failed)
             })
         })
-
     }
 }
 
