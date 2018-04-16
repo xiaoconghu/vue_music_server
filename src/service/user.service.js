@@ -8,21 +8,32 @@ class UserService {
 
     }
 
-    static register(user) {
+    register(user) {
         return new Promise((resolve, reject) => {
-            userModel.create(user).then(success=>{
-                resolve(success) ;
-            },failed=>{
-                reject(failed) ;
+            userModel.create(user).then(success => {
+                resolve(success);
+            }, failed => {
+                reject(failed);
             })
         })
 
     }
-    static getUser(){
+
+    getUser() {
         return new Promise((resolve, reject) => {
-            userModel.find({}).then(success=>{
+            userModel.find({}).then(success => {
                 resolve(success)
-            },failed=>{
+            }, failed => {
+                reject(failed)
+            })
+        })
+    }
+
+    login(body) {
+        return new Promise((resolve, reject) => {
+            userModel.find(body).then(success => {
+                resolve(success)
+            }, failed => {
                 reject(failed)
             })
         })
