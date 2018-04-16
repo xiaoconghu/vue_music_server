@@ -7,7 +7,6 @@ let Db = require('../db-config/db');
 
 let Schema = mongoose.Schema;
 let userSchema = new Schema({
-    id: String,
     userName: String,
     password: String,
 });
