@@ -1,3 +1,6 @@
+/**
+ * Created by xiaoconghu on 2018/4/15.
+ */
 let express = require('express');
 let router = express.Router();
 let UserService = new (require('./../service/user.service'));
@@ -5,9 +8,9 @@ let UserService = new (require('./../service/user.service'));
 
 router.post('/login', function (req, res, next) {
     let body = req.body;
-    UserService.login(req).then(success=>{
+    UserService.login(req).then(success => {
         res.send(success);
-    },failed=>{
+    }, failed => {
         res.send(failed)
     });
 });

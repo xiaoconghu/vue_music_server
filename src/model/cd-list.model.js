@@ -10,7 +10,9 @@ let cdListSchema = new Schema({
         type: Schema.Types.objectId,
         ref:'user'
     },
-    cDId: String,
+    cDId: {
+        type:Schema.Types.objectId,
+    },
     cdName: String,
     songNum: Number,
     description: String,

@@ -34,7 +34,7 @@ class cdListService {
      */
     deletList(ids) {
         return new Promise((resolve, reject) => {
-            cdListModel.findByIdAndRemove(id).then(success => {
+            cdListModel.findByIdAndRemove(ids).then(success => {
                 resolve()
             }, failed => {
                 reject()
@@ -57,4 +57,20 @@ class cdListService {
         })
     }
 
+    /**
+     * 查询歌单列表
+     * @returns {Promise<any>}
+     */
+    queryList() {
+        return new Promise((resolve, reject) => {
+            cdListModel.find({}).then(success => {
+                resolve(Result.getSuccessInstance(success))
+            }, failed => {
+                reject(Result.getNetWrokErrorInstance())
+            })
+        })
+    }
+
 }
+
+module.exports = cdListService;
