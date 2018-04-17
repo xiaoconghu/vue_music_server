@@ -17,7 +17,8 @@ node 服务端
 2. 项目结构
 
 3. 启动前的配置修改
-    安装mongoDB
+
+   安装mongoDB
    找到src/db-config/db.js更改数据库配置
 
 
