@@ -24,9 +24,9 @@ class UserService {
             let str = md5.digest('hex').toUpperCase();
             user.password = str;
             userModel.create(user).then(success => {
-                resolve(new Result(RESULT_CODE.SUCCESS.code, RESULT_CODE.SUCCESS.msg));
+                resolve(Result.getSuccessInstance());
             }, failed => {
-                reject(new Result(RESULT_CODE.PARAMETER_ERROR.code, RESULT_CODE.PARAMETER_ERROR.msg));
+                reject(Result.getParameterErrorInstance());
             })
         })
 
@@ -61,12 +61,12 @@ class UserService {
                     if (password === success[0].password) {
                         // 将用户存入session
                         req.session.user = success[0];
-                        resolve(new Result(RESULT_CODE.SUCCESS.code, RESULT_CODE.SUCCESS.msg))
+                        resolve(Result.getSuccessInstance())
                     } else {
-                        reject(new Result(RESULT_CODE.PASS_WORD_ERROR.code, RESULT_CODE.PASS_WORD_ERROR.msg))
+                        reject(Result.getPasswordErrorInstance())
                     }
                 } else {
-                    reject(new Result(RESULT_CODE.WEAK_NET_WORK.code, RESULT_CODE.WEAK_NET_WORK.msg))
+                    reject(Result.getNetWrokErrorInstance())
                 }
             }, failed => {
                 reject(failed)
