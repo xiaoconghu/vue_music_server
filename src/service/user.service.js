@@ -51,20 +51,22 @@ class UserService {
      * @param body
      * @returns {Promise<any>}
      */
-    login(body) {
+    login(req) {
         return new Promise((resolve, reject) => {
-            let {userName} =body ;
+            let {userName} = req.body;
             userModel.find({userName}).then(success => {
                 if (success && success.length > 0) {
                     let md5 = crypto.createHash("md5");
-                    let password= md5.update(body.password).digest('hex').toUpperCase();
+                    let password = md5.update(req.body.password).digest('hex').toUpperCase();
                     if (password === success[0].password) {
-                        resolve(new Result(RESULT_CODE.SUCCESS.code,RESULT_CODE.SUCCESS.msg))
+                        // 将用户存入session
+                        req.session.user = success[0];
+                        resolve(new Result(RESULT_CODE.SUCCESS.code, RESULT_CODE.SUCCESS.msg))
                     } else {
                         reject(new Result(RESULT_CODE.PASS_WORD_ERROR.code, RESULT_CODE.PASS_WORD_ERROR.msg))
                     }
                 } else {
-                    reject(new Result(RESULT_CODE.WEAK_NET_WORK.code,RESULT_CODE.WEAK_NET_WORK.msg))
+                    reject(new Result(RESULT_CODE.WEAK_NET_WORK.code, RESULT_CODE.WEAK_NET_WORK.msg))
                 }
             }, failed => {
                 reject(failed)

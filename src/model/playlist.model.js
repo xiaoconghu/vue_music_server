@@ -9,12 +9,29 @@ let Db = require('../db-config/db');
 
 let Schema = mongoose.Schema;
 let playlistSchema = new Schema({
-    userId: String,
+    userId: {
+        type: Schema.Types.objectId,
+        ref: 'user'
+    },
     songId: String,
+    cDId:{
+        type:Schema.Types.objectId,
+        ref:'cd_list'
+    },
     songName: String,
     singerName: String,
     fileName: String,
     songUrl: String,
+    meta: {
+        createAt: {
+            type: Date,
+            default: Date.now()
+        },
+        updateAt: {
+            type: Date,
+            default: Date.now()
+        }
+    }
 });
 
 module.exports = new Db().getConnection().model('playlist', playlistSchema);

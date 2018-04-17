@@ -5,7 +5,7 @@ let UserService = new (require('./../service/user.service'));
 
 router.post('/login', function (req, res, next) {
     let body = req.body;
-    UserService.login(body).then(success=>{
+    UserService.login(req).then(success=>{
         res.send(success);
     },failed=>{
         res.send(failed)

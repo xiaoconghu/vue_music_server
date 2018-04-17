@@ -9,6 +9,16 @@ let Schema = mongoose.Schema;
 let userSchema = new Schema({
     userName: String,
     password: String,
+    meta: {
+        createAt: {
+            type: Date,
+            default: Date.now()
+        },
+        updateAt: {
+            type: Date,
+            default: Date.now()
+        }
+    }
 });
 
 module.exports = new Db().getConnection().model('user', userSchema);
