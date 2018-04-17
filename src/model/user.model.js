@@ -1,5 +1,6 @@
 /**
  * Created by xiaoconghu on 2018/4/14.
+ * 用户表
  */
 const mongoose = require('mongoose');
 let Db = require('../db-config/db');

@@ -7,6 +7,8 @@ let logger = require('morgan');
 let session = require('express-session');
 let indexRouter = require('./src/routes/index');
 let usersRouter = require('./src/routes/users');
+let cdListRouter = require('./src/routes/cd-list');
+let playListRouter = require('./src/routes/cd-list');
 let intercept = require('./src/utils/intercept');
 
 let app = express();
@@ -36,6 +38,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.all('/*', intercept);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/music/cdList', cdListRouter);
+app.use('/music/playList', playListRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

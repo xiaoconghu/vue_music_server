@@ -3,8 +3,7 @@
  */
 let cdListModel = require('../model/cd-list.model');
 let Result = require('../utils/common-utils');
-let {RESULT_CODE} = require('../utils/common-model');
-
+let mongoose = require('mongoose');
 
 class cdListService {
 
@@ -28,16 +27,16 @@ class cdListService {
     }
 
     /**
-     * 删除歌单
-     * @param ids
+     * 批量删除歌单
+     * @param ids{Array}
      * @returns {Promise<any>}
      */
     deletList(ids) {
         return new Promise((resolve, reject) => {
-            cdListModel.findByIdAndRemove(ids).then(success => {
-                resolve()
+            cdListModel.remove({_id: {$in: ids}}).then(success => {
+                resolve(Result.getSuccessInstance())
             }, failed => {
-                reject()
+                reject(Result.getParameterErrorInstance())
             })
         })
     }
@@ -58,16 +57,25 @@ class cdListService {
     }
 
     /**
-     * 查询歌单列表
+     * 获取当前用户下的
+     * 分页查询歌单列表
      * @returns {Promise<any>}
      */
-    queryList() {
+    queryList(body) {
         return new Promise((resolve, reject) => {
-            cdListModel.find({}).then(success => {
-                resolve(Result.getSuccessInstance(success))
-            }, failed => {
-                reject(Result.getNetWrokErrorInstance())
-            })
+            let pageSize = body.pageSize;
+            let pageIndex = body.pageIndex;
+            cdListModel.find({'userId': mongoose.Types.ObjectId(body.userId)})
+                .skip((pageIndex - 1) * pageSize)
+                .limit(pageSize)
+                .sort({'_id': -1})
+                .exec((err, success) => {
+                    if (err) {
+                        reject(err);
+                        return
+                    }
+                    resolve(Result.getSuccessInstance(success))
+                })
         })
     }
 

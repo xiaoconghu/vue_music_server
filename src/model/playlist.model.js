@@ -10,13 +10,13 @@ let Db = require('../db-config/db');
 let Schema = mongoose.Schema;
 let playlistSchema = new Schema({
     userId: {
-        type: Schema.Types.objectId,
+        type: Schema.Types.ObjectId,
         ref: 'user'
     },
     songId: String,
-    cDId:{
-        type:Schema.Types.objectId,
-        ref:'cd_list'
+    cDId: {
+        type: Schema.Types.ObjectId,
+        ref: 'cd_list'
     },
     songName: String,
     singerName: String,

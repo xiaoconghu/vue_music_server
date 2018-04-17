@@ -73,6 +73,11 @@ class UserService {
             })
         })
     }
+    // getUserDetail(){
+    //     return new Promise((resolve, reject) => {
+    //         userModel.find({}).populate('')
+    //     })
+    // }
 }
 
 module.exports = UserService;
