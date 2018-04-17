@@ -9,7 +9,7 @@ class Db {
         this._conn = null;
     }
 
-     getInstance() {
+    static getInstance() {
         if (Db._instance) {
             Db._instance = new Db();
         }
@@ -29,5 +29,5 @@ class Db {
         return this._conn;
     }
 }
-module.exports=Db;
-// exports.Db = Db;
+
+module.exports = Db;

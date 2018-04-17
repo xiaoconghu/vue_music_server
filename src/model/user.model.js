@@ -11,4 +11,4 @@ let userSchema = new Schema({
     password: String,
 });
 
-module.exports=new Db().getConnection().model('user', userSchema);
+module.exports = new Db().getConnection().model('user', userSchema);
