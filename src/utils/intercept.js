@@ -3,7 +3,6 @@
  */
 
 let Result = require('../utils/common-utils');
-let {RESULT_CODE} = require('../utils/common-model');
 
 function intercept(req, res, next) {
     if (req.session.user) {
@@ -21,7 +20,7 @@ function intercept(req, res, next) {
         } else {  // 登录拦截
             // req.session.originalUrl = req.originalUrl ? req.originalUrl : null;  // 记录用户原始请求路径
             req.flash('error', '请先登录');
-            res.send(new Result(RESULT_CODE.USER_LOGIN_ERROR.code, RESULT_CODE.USER_LOGIN_ERROR.msg))
+            res.send(Result.getUserLoginErrorInstance())
             // res.redirect('/user/login');  // 将用户重定向到登录页面
         }
     }
