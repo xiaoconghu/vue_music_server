@@ -1,3 +1,5 @@
+// import * as router from './src/routes/music';
+let router = require('./src/routes/music');
 let createError = require('http-errors');
 let express = require('express');
 let flash = require('connect-flash');
@@ -36,10 +38,12 @@ app.use(function (req, res, next) {
 });
 app.use(express.static(path.join(__dirname, 'public')));
 app.all('/*', intercept);
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/music/cdList', cdListRouter);
-app.use('/music/playList', playListRouter);
+
+app.use('/music',router);
+//
+// app.use('/music/users', usersRouter);
+// app.use('/music/cdList', cdListRouter);
+// app.use('/music/playList', playListRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

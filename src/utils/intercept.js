@@ -15,7 +15,7 @@ function intercept(req, res, next) {
         }
         if (arr.length > 1 && arr[1] === '') {// 判断请求路径是否为根、登录、注册、登出，如果是不做拦截
             next();
-        } else if (arr.length > 2 && arr[1] === 'users' && (arr[2] === 'register' || arr[2] === 'login' || arr[2] === 'logout' || arr[2].indexOf('login') >= 0)) {
+        } else if (arr.length > 2 && arr[2] === 'users' && (arr[3] === 'register' || arr[3] === 'login' || arr[3] === 'logout' || arr[3].indexOf('login') >= 0)) {
             next();
         } else {  // 登录拦截
             // req.session.originalUrl = req.originalUrl ? req.originalUrl : null;  // 记录用户原始请求路径

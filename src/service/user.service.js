@@ -4,8 +4,7 @@
 let userModel = require('../model/user.model');
 let crypto = require('crypto');
 let Result = require('../utils/common-utils');
-let {RESULT_CODE} = require('../utils/common-model');
-
+let {get_uuid} = require('../utils/common-model');
 
 class UserService {
     constructor() {
@@ -61,7 +60,9 @@ class UserService {
                     if (password === success[0].password) {
                         // 将用户存入session
                         req.session.user = success[0];
-                        resolve(Result.getSuccessInstance())
+                        console.log(req.session);
+                        let uuid = get_uuid();
+                        resolve(Result.getSuccessInstance(uuid))
                     } else {
                         reject(Result.getPasswordErrorInstance())
                     }
