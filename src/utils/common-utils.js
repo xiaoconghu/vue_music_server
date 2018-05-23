@@ -14,7 +14,7 @@ class Result {
         return new Result(RESULT_CODE.SUCCESS.code, RESULT_CODE.SUCCESS.msg, data)
     }
     static getNetWrokErrorInstance(data = []) {
-       return new Result(RESULT_CODE.WEAK_NET_WORK, RESULT_CODE.WEAK_NET_WORK.msg, data)
+       return new Result(RESULT_CODE.WEAK_NET_WORK.code, RESULT_CODE.WEAK_NET_WORK.msg, data)
     }
     static getParameterErrorInstance(data = []) {
        return new Result(RESULT_CODE.PARAMETER_ERROR.code, RESULT_CODE.PARAMETER_ERROR.msg, data)

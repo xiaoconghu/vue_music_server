@@ -52,8 +52,8 @@ class UserService {
      */
     login(req) {
         return new Promise((resolve, reject) => {
-            let {userName} = req.body;
-            userModel.find({userName}).then(success => {
+            let {userCode} = req.body;
+            userModel.find({userCode}).then(success => {
                 if (success && success.length > 0) {
                     let md5 = crypto.createHash("md5");
                     let password = md5.update(req.body.password).digest('hex').toUpperCase();
