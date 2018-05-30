@@ -39,7 +39,7 @@ app.use(function (req, res, next) {
 app.use(express.static(path.join(__dirname, 'public')));
 app.all('/*', intercept);
 
-app.use('/music',router);
+app.use('/nodeApi',router);
 //
 // app.use('/music/users', usersRouter);
 // app.use('/music/cdList', cdListRouter);

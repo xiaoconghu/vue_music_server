@@ -1,7 +1,7 @@
 /**
  * Created by xiaoconghu on 2018/5/21.
  */
-let express = require('express')
+let express = require('express');
 let users  = require('./users');
 let playlist  = require('./playlist');
 const routers = {
